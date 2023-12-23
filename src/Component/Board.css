@@ -9,3 +9,15 @@
     width: calc(8 * var(--tile-size));
 
 }
+
+.tile {
+
+}
+
+.tile-dark{
+    background-color: var(--tile-dark);
+}
+
+.tile-light{
+    background-color: var(--tile-light);
+}

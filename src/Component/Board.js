@@ -2,6 +2,12 @@ import { getCharacter } from "../helper";
 import "./Board.css";
 
 const Board = () => {
+  const getClassName = (i, j) => {
+    const cls = i + (j % 2) === 0 ? "tile-light" : "tile-dark";
+    console.log(cls);
+
+    return cls;
+  };
   const ranks = Array(8)
     .fill()
     .map((x, i) => 8 - i);
@@ -13,10 +19,9 @@ const Board = () => {
     <>
       <div className="board">
         <div className="tiles">
-          <h1>Board</h1>
           {ranks.map((ranks, i) =>
-            files.map((files, i) => (
-              <div key={ranks + "-" + files}>
+            files.map((files, j) => (
+              <div key={ranks + "-" + files} className={getClassName(i, j)}>
                 {ranks}
                 {files}
               </div>
