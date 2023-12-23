@@ -15,9 +15,9 @@
 }
 
 .tile-dark{
-    background-color: var(--tile-dark);
+    background-color: var(--dark-tile);
 }
 
 .tile-light{
-    background-color: var(--tile-light);
+    background-color: var(--light-tile);
 }
