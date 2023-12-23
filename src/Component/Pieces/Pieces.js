@@ -13,7 +13,14 @@ const Pieces = () => {
     <div className="pieces">
       {positions.map((x, rank) =>
         x.map((f, file) =>
-          positions[rank][file] ? positions[rank][file] : null
+          positions[rank][file] ? 
+          <Piece
+            key={rank +'-' + file}
+            rank={rank}
+            file={file}
+            piece={positions[rank][file]}
+          /> 
+          : null
         )
       )}
     </div>
