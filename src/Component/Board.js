@@ -1,11 +1,12 @@
 import { getCharacter } from "../helper";
 import "./Board.css";
+import Ranks from "./bits/Ranks";
+import Files from "./bits/Files";
 
 const Board = () => {
   const getClassName = (i, j) => {
     let c = "tile";
     c += (i + j) % 2 === 0 ? " tile-light" : " tile-dark";
-    console.log(c);
     return c;
   };
   const ranks = Array(8)
@@ -18,6 +19,7 @@ const Board = () => {
   return (
     <>
       <div className="board">
+        <Ranks ranks={ranks} />
         <div className="tiles">
           {ranks.map((ranks, i) =>
             files.map((files, j) => (
@@ -28,6 +30,7 @@ const Board = () => {
             ))
           )}
         </div>
+        <Files files={files} />
       </div>
     </>
   );
