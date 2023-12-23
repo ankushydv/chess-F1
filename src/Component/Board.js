@@ -3,10 +3,10 @@ import "./Board.css";
 
 const Board = () => {
   const getClassName = (i, j) => {
-    const cls = i + (j % 2) === 0 ? "tile-light" : "tile-dark";
-    console.log(cls);
-
-    return cls;
+    let c = "tile";
+    c += (i + j) % 2 === 0 ? " tile-light" : " tile-dark";
+    console.log(c);
+    return c;
   };
   const ranks = Array(8)
     .fill()
