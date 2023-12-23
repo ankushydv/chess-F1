@@ -6,7 +6,7 @@ const Board = () => {
     .map((x, i) => 8 - i);
   const files = Array(8)
     .fill()
-    .map((x, i) => i);
+    .map((x, i) => String.fromCharCode(i + 97));
 
   return (
     <>
@@ -17,7 +17,7 @@ const Board = () => {
             files.map((files, i) => (
               <div key={ranks + "-" + files}>
                 {ranks}
-                {/* {files} */}
+                {files}
               </div>
             ))
           )}
