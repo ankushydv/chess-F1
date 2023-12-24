@@ -8,6 +8,7 @@ const Pieces = () => {
 
   for (let i = 0; i < 8; i++) {
     positions[1][i] = "wp";
+    positions[6][i] = "bp";
   }
 
   positions[0][0] = "wr";
@@ -27,15 +28,6 @@ const Pieces = () => {
   positions[7][6] = "bkn";
   positions[7][7] = "br";
   positions[7][0] = "br";
-
-  positions[6][0] = "bp";
-  positions[6][1] = "bp";
-  positions[6][2] = "bp";
-  positions[6][3] = "bp";
-  positions[6][4] = "bp";
-  positions[6][5] = "bp";
-  positions[6][6] = "bp";
-  positions[6][7] = "bp";
 
   console.log(positions);
   return (
