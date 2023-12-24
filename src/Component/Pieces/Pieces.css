@@ -23,8 +23,11 @@
 .piece.bkn {
     background-image: url('../../assest/black-knight.png');
 }
-.piece.bp {
+.piece.bb {
     background-image: url('../../assest/black-bishop.png');
+}
+.piece.bp {
+    background-image: url('../../assest/black-pawn.png');
 }
 .piece.bq {
     background-image: url('../../assest/black-queen.png');
@@ -48,7 +51,7 @@
     background-image: url('../../assest/white-pawn.png');
 }
 
-.piece.p-77 {
+.piece.p-07 {
     transform: translate(0% , 0%);
 }
 .piece.p-17 {
@@ -71,4 +74,28 @@
 }
 .piece.p-77 {
     transform: translate(700% , 0%);
+}
+.piece.p-06 {
+    transform: translate(0% , 100%);
+}
+.piece.p-16 {
+    transform: translate(100% , 100%);
+}
+.piece.p-26 {
+    transform: translate(200% , 100%);
+}
+.piece.p-36 {
+    transform: translate(300% , 100%);
+}
+.piece.p-46 {
+    transform: translate(400% , 100%);
+}
+.piece.p-56 {
+    transform: translate(500% , 100%);
+}
+.piece.p-66 {
+    transform: translate(600% , 100%);
+}
+.piece.p-76 {
+    transform: translate(700% , 100%);
 }

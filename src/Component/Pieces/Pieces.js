@@ -6,22 +6,30 @@ const Pieces = () => {
     .fill("")
     .map((x) => Array(8).fill(""));
 
-  positions[0][0] = "wr";
-  positions[0][0] = "wk";
-  positions[0][0] = "wkn";
-  positions[0][0] = "wq";
-  positions[0][0] = "wp";
-  positions[0][0] = "wb";
+  // positions[0][0] = "wr";
+  // positions[0][0] = "wk";
+  // positions[0][0] = "wkn";
+  // positions[0][0] = "wq";
+  // positions[0][0] = "wp";
+  // positions[0][0] = "wb";
 
   positions[7][7] = "br";
   positions[0][7] = "br";
-
   positions[4][7] = "bk";
   positions[1][7] = "bkn";
   positions[6][7] = "bkn";
   positions[3][7] = "bq";
-  positions[2][7] = "bp";
-  positions[5][7] = "bp";
+  positions[2][7] = "bb";
+  positions[5][7] = "bb";
+
+  positions[0][6] = "bp";
+  positions[1][6] = "bp";
+  positions[2][6] = "bp";
+  positions[3][6] = "bp";
+  positions[4][6] = "bp";
+  positions[5][6] = "bp";
+  positions[6][6] = "bp";
+  positions[7][6] = "bp";
 
   console.log(positions);
   return (
