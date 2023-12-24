@@ -6,3 +6,69 @@
     left: calc(.25*var(--tile-size));
     background-color:  rgba(200,0,0,.5);
 }
+
+.piece{
+    width: 12.5%;
+    height: 12.5%;
+    position: absolute;
+    background-size: 100%;
+}
+
+.piece.br {
+    background-image: url('../../assest/black-rook.png');
+}
+.piece.bk {
+    background-image: url('../../assest/black-king.png');
+}
+.piece.bkn {
+    background-image: url('../../assest/black-knight.png');
+}
+.piece.bp {
+    background-image: url('../../assest/black-bishop.png');
+}
+.piece.bq {
+    background-image: url('../../assest/black-queen.png');
+}
+.piece.wr {
+    background-image: url('../../assest/white-rook.png');
+}
+.piece.wk {
+    background-image: url('../../assest/white-king.png');
+}
+.piece.wkn {
+    background-image: url('../../assest/white-knight.png');
+}
+.piece.wb {
+    background-image: url('../../assest/white-bishop.png');
+}
+.piece.wq {
+    background-image: url('../../assest/white-queen.png');
+}
+.piece.wp {
+    background-image: url('../../assest/white-pawn.png');
+}
+
+.piece.p-77 {
+    transform: translate(0% , 0%);
+}
+.piece.p-17 {
+    transform: translate(100% , 0%);
+}
+.piece.p-27 {
+    transform: translate(200% , 0%);
+}
+.piece.p-37 {
+    transform: translate(300% , 0%);
+}
+.piece.p-47 {
+    transform: translate(400% , 0%);
+}
+.piece.p-57 {
+    transform: translate(500% , 0%);
+}
+.piece.p-67 {
+    transform: translate(600% , 0%);
+}
+.piece.p-77 {
+    transform: translate(700% , 0%);
+}
