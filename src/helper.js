@@ -30,3 +30,18 @@ export const createPosition = () => {
 
   return positions;
 };
+
+export const copyPosition = (positions) => {
+  console.log(positions);
+  const newPosition = new Array(8).fill("").map((x) => new Array(8).fill(""));
+  console.log("newPosition: at start", newPosition);
+
+  for (let rank = 0; rank < 8; rank++) {
+    for (let file = 0; file < 8; file++) {
+      console.log(positions[rank][file]);
+      newPosition[rank][file] = positions[rank][file];
+    }
+    console.log("newwwwPosition", newPosition);
+    return newPosition;
+  }
+};

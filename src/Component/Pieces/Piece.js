@@ -6,11 +6,16 @@ const Piece = ({ file, piece, rank }) => {
       e.target.style.display = "none";
     }, 0);
   };
+
+  const onDragEnd = (e) => {
+    e.target.style.display = "block";
+  };
   return (
     <div
       className={`piece ${piece} p-${rank}${file}`}
       draggable={true}
       onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
     />
   );
 };
