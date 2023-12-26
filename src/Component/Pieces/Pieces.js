@@ -10,7 +10,7 @@ const Pieces = () => {
   const { AppState, dispatch } = useAppContext();
   console.log("AppState", AppState);
   const currentPosition = AppState.positions;
-  const [state, setState] = useState(createPosition);
+  // const [state, setState] = useState(createPosition);
   const getCordinates = (e) => {
     const { top, left, width } = ref.current.getBoundingClientRect();
     const size = width / 8;
