@@ -1,4 +1,4 @@
-export const getCharacter = (file) => String.fromCharCode(file + 97);
+export const getCharacter = (file) => String.fromCharCode(file + 96);
 
 export const createPosition = () => {
   const positions = Array(8)
@@ -37,11 +37,11 @@ export const copyPosition = (positions) => {
   console.log("newPosition: at start", newPosition);
 
   for (let rank = 0; rank < 8; rank++) {
-    for (let file = 0; file < 8; file++) {
-      console.log(positions[rank][file]);
+    for (let file = 0; file < positions[0].length; file++) {
+      console.log("on loop", positions[rank][file]);
       newPosition[rank][file] = positions[rank][file];
     }
-    console.log("newwwwPosition", newPosition);
-    return newPosition;
   }
+  console.log("newwwwPosition", newPosition);
+  return newPosition;
 };
