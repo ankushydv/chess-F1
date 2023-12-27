@@ -1,12 +1,17 @@
+import actionTypes from "./action/actionType";
+
 export const reducer = (state, action) => {
   switch (action.type) {
-    case "NEW_MOVE":
+    case actionTypes.NEW_MOVE:
+      let { turn, positions } = state;
+      turn = turn === "w" ? "b" : "w";
+      positions = [...positions, action.payload.newPositions];
       return {
         ...state,
-        position: action.payload.position,
+        turn,
+        positions,
       };
     default:
       return state;
   }
-  return state;
 };
