@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import "./App.css";
 import Board from "./Component/Board";
-import AppContext from "./Context/Context";
+import AppContext from "./context/Context";
 import { reducer } from "./Reducer/reducer";
 import { initGameState } from "./constant";
 
@@ -11,6 +11,8 @@ function App() {
     AppState,
     dispatch,
   };
+
+  // console.log("turn", AppState.turn);
   return (
     <AppContext.Provider value={ProviderState}>
       <div className="App">
