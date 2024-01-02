@@ -9,19 +9,20 @@ const Pieces = () => {
   const ref = useRef();
   const { AppState, dispatch } = useAppContext();
   console.log("AppState", AppState);
-  const currentPosition = AppState.positions[AppState.positions.length - 1];
+  const currentPosition = AppState.position[AppState.position.length - 1];
   console.log("CurrentPosition", currentPosition);
-  const getCordinates = (e) => {
+  const calculateCoords = (e) => {
     const { top, left, width } = ref.current.getBoundingClientRect();
     const size = width / 8;
     const y = Math.floor((e.clientX - left) / size);
     const x = 7 - Math.floor((e.clientY - top) / size);
+
     return { x, y };
   };
 
   const onDrop = (e) => {
     let newPositions = copyPosition(currentPosition);
-    const { x, y } = getCordinates(e);
+    const { x, y } = calculateCoords(e);
     // console.log(x, y);
     const [piece, rank, file] = e.dataTransfer.getData("text").split(",");
     let rankNumber = Number(rank);
@@ -37,9 +38,9 @@ const Pieces = () => {
   };
 
   return (
-    <div className="pieces" onDrop={onDrop} ref={ref} onDragOver={onDragOver}>
-      {currentPosition.map((x, rank) =>
-        x.map((f, file) =>
+    <div className="pieces" ref={ref} onDrop={onDrop} onDragOver={onDragOver}>
+      {currentPosition.map((r, rank) =>
+        r.map((f, file) =>
           currentPosition[rank][file] ? (
             <Piece
               key={rank + "-" + file}
