@@ -12,7 +12,7 @@ const Piece = ({ file, piece, rank }) => {
   };
   return (
     <div
-      className={`piece ${piece} p-${rank}${file}`}
+      className={`piece ${piece} p-${file}${rank}`}
       draggable={true}
       onDragStart={onDragStart}
       onDragEnd={onDragEnd}
