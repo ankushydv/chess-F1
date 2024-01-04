@@ -2,7 +2,7 @@ import Piece from "./Piece";
 import React, { useRef } from "react";
 import "./Pieces.css";
 import { copyPosition } from "../../helper";
-import { useAppContext } from "../../context/Context";
+import { useAppContext } from "../../context/context";
 import { makeNewMove } from "../../Reducer/action/move";
 
 const Pieces = () => {
