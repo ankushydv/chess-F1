@@ -8,9 +8,8 @@ import { makeNewMove } from "../../Reducer/action/move";
 const Pieces = () => {
   const ref = useRef();
   const { AppState, dispatch } = useAppContext();
-  console.log("AppState", AppState);
+  // console.log("AppState", AppState);
   const currentPosition = AppState.positions[AppState.positions.length - 1];
-  console.log("CurrentPosition", currentPosition);
   const getCordinates = (e) => {
     const { top, left, width } = ref.current.getBoundingClientRect();
     const size = width / 8;
