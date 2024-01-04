@@ -24,6 +24,6 @@ export const getRooksMoves = ({ position, piece, rank, file }) => {
       moves.push([x, y]);
     }
   });
-  console.log(moves[moves.length - 1]);
+  // console.log(moves[moves.length - 1]);
   return moves;
 };
