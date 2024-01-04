@@ -21,7 +21,7 @@ const Piece = ({ file, piece, rank }) => {
         rank,
         file,
       });
-      console.log("candidate move", candidateMoves);
+      // console.log("candidate move", candidateMoves);
       dispatch(genrateCandidateMoves({ candidateMoves }));
     }
   };
