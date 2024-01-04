@@ -1,4 +1,15 @@
-@import "./constant.css";
+/* @import "./Constant.css"; */
+:root{
+  --tile-size:69px;
+  --dark-tile:#C4A484;
+  --light-tile:#fbffc0;
+  --bg-color:#262525;
+}
+
+/* @media all and(max-width: 450px){
+:root { --tile-size:50px;}
+
+} */
 
 
 body, html{
@@ -11,5 +22,4 @@ body, html{
  place-content: center;
  height: 100vh;
  background-color: var(--bg-color);
- /* padding-top: 3px; */
 }
