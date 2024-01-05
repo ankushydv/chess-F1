@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import "./App.css";
 import Board from "./Component/Board";
-import AppContext from "./context/context";
+import AppContext from "./Context/Context";
 import { reducer } from "./Reducer/reducer";
 import { initGameState } from "./constant";
 

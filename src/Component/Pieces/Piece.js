@@ -1,4 +1,4 @@
-import { useAppContext } from "../../context/context";
+import { useAppContext } from "../../Context/Context";
 import arbiter from "../../arbiter/arbiter";
 import { genrateCandidateMoves } from "../../Reducer/action/move";
 

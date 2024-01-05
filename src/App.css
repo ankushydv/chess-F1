@@ -1,4 +1,10 @@
-@import "./constant.css";
+/* @import "./constant.css"; */
+:root{
+  --tile-size:69px;
+  --dark-tile:#C4A484;
+  --light-tile:#fbffc0;
+  --bg-color:#262525;
+}
 
 
 body, html{
