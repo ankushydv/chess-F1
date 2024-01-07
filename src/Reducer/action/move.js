@@ -13,3 +13,9 @@ export const genrateCandidateMoves = ({ candidateMoves }) => {
     payload: { candidateMoves },
   };
 };
+
+export const clearCandidateMoves = () => {
+  return {
+    type: actionTypes.CLEAR_CANDIDATE_MOVE,
+  };
+};
