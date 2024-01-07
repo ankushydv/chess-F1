@@ -1,16 +1,23 @@
-import { getRooksMoves, getKnightMoves, getBishopMoves } from "./getMoves";
+import {
+  getRooksMoves,
+  getKnightMoves,
+  getBishopMoves,
+  getQueenMoves,
+} from "./getMoves";
 
 const arbiter = {
   getRegularMoves: function ({ position, piece, rank, file }) {
-    if (position[rank][file].endsWith("r")) {
+    if (position[rank][file].endsWith("r"))
       return getRooksMoves({ position, piece, rank, file });
-    }
-    if (position[rank][file].endsWith("b")) {
+
+    if (position[rank][file].endsWith("b"))
       return getBishopMoves({ position, piece, rank, file });
-    }
-    if (position[rank][file].endsWith("n")) {
+
+    if (position[rank][file].endsWith("q"))
+      return getQueenMoves({ position, piece, rank, file });
+
+    if (position[rank][file].endsWith("n"))
       return getKnightMoves({ position, rank, file });
-    }
   },
 };
 
