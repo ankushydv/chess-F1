@@ -23,12 +23,14 @@ const Pieces = () => {
     const { x, y } = getCordinates(e);
     // console.log(x, y);
     const [piece, rank, file] = e.dataTransfer.getData("text").split(",");
-    let rankNumber = Number(rank);
-    let fileNumber = Number(file);
-    newPositions[rankNumber][fileNumber] = "";
-    newPositions[x][y] = piece;
-    // console.log(newPositions);
-    dispatch(makeNewMove({ newPositions }));
+    if (AppState.candidateMoves?.find((m) => m[0] === x && m[1] === y)) {
+      let rankNumber = Number(rank);
+      let fileNumber = Number(file);
+      newPositions[rankNumber][fileNumber] = "";
+      newPositions[x][y] = piece;
+      // console.log(newPositions);
+      dispatch(makeNewMove({ newPositions }));
+    }
   };
 
   const onDragOver = (e) => {
