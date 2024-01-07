@@ -5,10 +5,10 @@ export const createPosition = () => {
     .fill("")
     .map((x) => Array(8).fill(""));
 
-  // for (let i = 0; i < 8; i++) {
-  //   positions[1][i] = "wp";
-  //   positions[6][i] = "bp";
-  // }
+  for (let i = 0; i < 8; i++) {
+    positions[1][i] = "wp";
+    positions[6][i] = "bp";
+  }
 
   positions[0][0] = "wr";
   positions[0][1] = "wn";
