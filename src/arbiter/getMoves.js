@@ -27,3 +27,24 @@ export const getRooksMoves = ({ position, piece, rank, file }) => {
   // console.log(moves[moves.length - 1]);
   return moves;
 };
+export const getKnightMoves = ({ position, rank, file }) => {
+  const moves = [];
+  const enemy = position[rank][file].startsWith("w") ? "b" : "w";
+  const direaction = [
+    [-2, 1],
+    [2, -1],
+    [-2, -1],
+    [-1, 2],
+    [-1, -2],
+    [1, -2],
+    [2, 1],
+    [1, 2],
+  ];
+  direaction.forEach((c) => {
+    const cell = position?.[rank + c[0]]?.[file + c[1]];
+    if (cell !== undefined && (cell.startsWith(enemy) || cell === "")) {
+      moves.push([rank + c[0], file + c[1]]);
+    }
+  });
+  return moves;
+};
