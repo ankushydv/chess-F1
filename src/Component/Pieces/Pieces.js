@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import "./Pieces.css";
 import { copyPosition } from "../../helper";
 import { useAppContext } from "../../context";
-import { makeNewMove } from "../../Reducer/action/move";
+import { makeNewMove, clearCandidateMoves } from "../../Reducer/action/move";
 
 const Pieces = () => {
   const ref = useRef();
@@ -31,6 +31,7 @@ const Pieces = () => {
       // console.log(newPositions);
       dispatch(makeNewMove({ newPositions }));
     }
+    dispatch(clearCandidateMoves());
   };
 
   const onDragOver = (e) => {
