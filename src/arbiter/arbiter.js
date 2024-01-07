@@ -4,6 +4,7 @@ import {
   getBishopMoves,
   getQueenMoves,
   getKingMoves,
+  getPawnMoves,
 } from "./getMoves";
 
 const arbiter = {
@@ -22,6 +23,9 @@ const arbiter = {
 
     if (position[rank][file].endsWith("k"))
       return getKingMoves({ position, piece, rank, file });
+
+    if (position[rank][file].endsWith("p"))
+      return getPawnMoves({ position, piece, rank, file });
   },
 };
 
