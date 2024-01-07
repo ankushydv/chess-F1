@@ -10,7 +10,6 @@ const Board = () => {
   const { AppState } = useAppContext();
   const positions = AppState.positions[AppState.positions.length - 1];
   const getClassName = (i, j) => {
-    console.log("i,j", i, j);
     let c = "tile";
     c += (i + j) % 2 === 0 ? " tile-light" : " tile-dark";
     if (AppState.candidateMoves?.find((m) => m[0] === i && m[1] === j)) {
