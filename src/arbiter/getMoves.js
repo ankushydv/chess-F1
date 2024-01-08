@@ -216,7 +216,7 @@ export const getPawnCapture = ({
           prevPosition?.[rank]?.[f] === "" &&
           prevPosition?.[rank + dir + dir]?.[f] === enemyPawn
         ) {
-          moves.push([rank + dir, file - 1]);
+          moves.push([rank + dir, f]);
         }
       });
     }
