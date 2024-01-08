@@ -37,7 +37,6 @@ const Pieces = () => {
       let fileNumber = Number(file);
       newPositions[rankNumber][fileNumber] = "";
       newPositions[x][y] = piece;
-      // console.log(newPositions);
       dispatch(makeNewMove({ newPositions }));
     }
     dispatch(clearCandidateMoves());
