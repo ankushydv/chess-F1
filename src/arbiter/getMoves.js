@@ -180,7 +180,13 @@ export const getPawnMoves = ({ position, piece, rank, file }) => {
 
 // Function to get valid capture moves for pawns on the chessboard
 
-export const getPawnCapture = ({ position, piece, rank, file }) => {
+export const getPawnCapture = ({
+  position,
+  prevPosition,
+  piece,
+  rank,
+  file,
+}) => {
   const moves = [];
   const dir = piece === "wp" ? 1 : -1;
   const enemy = piece[0] === "w" ? "b" : "w";
@@ -198,5 +204,26 @@ export const getPawnCapture = ({ position, piece, rank, file }) => {
   ) {
     moves.push([rank + dir, file + 1]);
   }
+  //En-Passant move
+  const enemyPawn = dir === 1 ? "bp" : "wp";
+  const adjacentPawn = [file - 1, file + 1];
+  if (prevPosition) {
+    console.log(prevPosition + "Yhaa tak arr h");
+    if ((dir === 1 && rank === 4) || (dir === -1 && rank === 3)) {
+      console.log("ahha tah");
+      adjacentPawn.forEach((f) => {
+        if (
+          position?.[rank]?.[f] === enemyPawn &&
+          position?.[rank + dir + dir]?.[f] === "" &&
+          prevPosition?.[rank]?.[f] === "" &&
+          prevPosition?.[rank + dir + dir]?.[f] === enemyPawn
+        ) {
+          console.log("and aaha tak");
+          moves.push([rank + dir, file - 1]);
+        }
+      });
+    }
+  }
+
   return moves;
 };
