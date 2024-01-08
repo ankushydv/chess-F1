@@ -208,9 +208,7 @@ export const getPawnCapture = ({
   const enemyPawn = dir === 1 ? "bp" : "wp";
   const adjacentPawn = [file - 1, file + 1];
   if (prevPosition) {
-    console.log(prevPosition + "Yhaa tak arr h");
     if ((dir === 1 && rank === 4) || (dir === -1 && rank === 3)) {
-      console.log("ahha tah");
       adjacentPawn.forEach((f) => {
         if (
           position?.[rank]?.[f] === enemyPawn &&
@@ -218,7 +216,6 @@ export const getPawnCapture = ({
           prevPosition?.[rank]?.[f] === "" &&
           prevPosition?.[rank + dir + dir]?.[f] === enemyPawn
         ) {
-          console.log("and aaha tak");
           moves.push([rank + dir, file - 1]);
         }
       });
