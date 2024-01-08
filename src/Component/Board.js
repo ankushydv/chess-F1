@@ -8,7 +8,11 @@ import { useAppContext } from "../context";
 
 const Board = () => {
   const { AppState } = useAppContext();
+
+  //Get the current piece move position move.
   const positions = AppState.positions[AppState.positions.length - 1];
+  //Genrate the board classname for black and white.
+  //It is also give a hint for move as per piece and give hint as cicle position for any enemy piece is available for attack.
   const getClassName = (i, j) => {
     let c = "tile";
     c += (i + j) % 2 === 0 ? " tile-light" : " tile-dark";
@@ -18,9 +22,11 @@ const Board = () => {
     }
     return c;
   };
+  //It's genrated the block as 8 row in chess board(0,1,2,3,4,5,6,7).
   const ranks = Array(8)
     .fill()
     .map((x, i) => 8 - i);
+  //It's genrated the block as 8 column in chess board(a,b,c,d,e,f,g,h).
   const files = Array(8)
     .fill()
     .map((x, i) => getCharacter(i));

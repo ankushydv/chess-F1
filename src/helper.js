@@ -1,5 +1,7 @@
+//genrate letter as Character code with 97 is (a, b, c, d, e, f, g, h)
 export const getCharacter = (file) => String.fromCharCode(file + 97);
 
+//In chess board piece position create by the function
 export const createPosition = () => {
   const positions = Array(8)
     .fill("")
@@ -31,7 +33,9 @@ export const createPosition = () => {
   return positions;
 };
 
+//After piece move this function copy the latest positions of pieces
 export const copyPosition = (positions) => {
+  //create a new position array of 2 deimensional of 8 by 8 and fill empty string
   const newPosition = new Array(8).fill("").map((x) => new Array(8).fill(""));
 
   for (let rank = 0; rank < 8; rank++) {
