@@ -9,6 +9,7 @@ import {
 } from "./getMoves";
 
 const arbiter = {
+  //Get the position of the piece and there name exmaple: pieceName (piece or position)
   getRegularMoves: function ({ position, piece, rank, file }) {
     if (position[rank][file].endsWith("r"))
       return getRooksMoves({ position, piece, rank, file });
