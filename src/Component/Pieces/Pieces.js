@@ -4,6 +4,7 @@ import "./Pieces.css";
 import { copyPosition } from "../../helper";
 import { useAppContext } from "../../context";
 import { makeNewMove, clearCandidateMoves } from "../../Reducer/action/move";
+import arbiter from "../../arbiter/arbiter";
 
 const Pieces = () => {
   const ref = useRef();
@@ -18,28 +19,28 @@ const Pieces = () => {
     return { x, y };
   };
 
-  const onDrop = (e) => {
-    let newPositions = copyPosition(currentPosition);
+  const move = (e) => {
     const { x, y } = getCordinates(e);
-    // console.log(x, y);
     const [piece, rank, file] = e.dataTransfer.getData("text").split(",");
+    let rankNumber = Number(rank);
+    let fileNumber = Number(file);
     if (AppState.candidateMoves?.find((m) => m[0] === x && m[1] === y)) {
-      if (
-        piece.endsWith("p") &&
-        !newPositions[x][y] &&
-        x !== rank &&
-        y !== file
-      ) {
-        newPositions[Number(rank)][y] = " ";
-      }
-
-      let rankNumber = Number(rank);
-      let fileNumber = Number(file);
-      newPositions[rankNumber][fileNumber] = "";
-      newPositions[x][y] = piece;
+      const newPositions = arbiter.performMoves({
+        positions: currentPosition,
+        piece,
+        rank: rankNumber,
+        file: fileNumber,
+        x,
+        y,
+      });
       dispatch(makeNewMove({ newPositions }));
     }
     dispatch(clearCandidateMoves());
+  };
+
+  const onDrop = (e) => {
+    e.preventDefault();
+    move(e);
   };
 
   const onDragOver = (e) => {

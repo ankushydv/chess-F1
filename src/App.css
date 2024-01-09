@@ -21,3 +21,14 @@ body, html{
  background-color: var(--bg-color);
  /* padding-top: 3px; */
 }
+
+.w{
+  background-color: white;
+  transition: background-color 1000ms linear;
+}
+
+.b{
+  background-color: var(--bg-color);
+  transition: background-color 1000ms linear;
+
+}
