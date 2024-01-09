@@ -1,7 +1,6 @@
 import Piece from "./Piece";
 import React, { useRef } from "react";
 import "./Pieces.css";
-import { copyPosition } from "../../helper";
 import { useAppContext } from "../../context";
 import { makeNewMove, clearCandidateMoves } from "../../Reducer/action/move";
 import arbiter from "../../arbiter/arbiter";
