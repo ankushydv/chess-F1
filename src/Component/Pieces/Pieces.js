@@ -4,6 +4,7 @@ import "./Pieces.css";
 import { useAppContext } from "../../context";
 import { makeNewMove, clearCandidateMoves } from "../../Reducer/action/move";
 import arbiter from "../../arbiter/arbiter";
+import { openPromotion } from "../../Reducer/action/popup";
 
 const Pieces = () => {
   const ref = useRef();
@@ -18,12 +19,27 @@ const Pieces = () => {
     return { x, y };
   };
 
+  const openPromotionBox = ({ rank, file, x, y }) => {
+    dispatch(
+      openPromotion({
+        rank,
+        file,
+        x,
+        y,
+      })
+    );
+  };
+
   const move = (e) => {
     const { x, y } = getCordinates(e);
     const [piece, rank, file] = e.dataTransfer.getData("text").split(",");
     let rankNumber = Number(rank);
     let fileNumber = Number(file);
     if (AppState.candidateMoves?.find((m) => m[0] === x && m[1] === y)) {
+      if ((piece === "wp " && rank === 7) || (piece === "bp " && rank === 0)) {
+        openPromotionBox({ rank, file, x, y });
+        return;
+      }
       const newPositions = arbiter.performMoves({
         positions: currentPosition,
         piece,
