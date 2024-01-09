@@ -12,7 +12,7 @@ function App() {
     dispatch,
   };
 
-  console.log("turn", AppState.turn);
+  // console.log("turn", AppState.turn);
   return (
     <AppContext.Provider value={ProviderState}>
       <div className={`App ${AppState.turn}`}>
