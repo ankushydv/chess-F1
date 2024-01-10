@@ -9,7 +9,6 @@ import { openPromotion } from "../../Reducer/action/popup";
 const Pieces = () => {
   const ref = useRef();
   const { AppState, dispatch } = useAppContext();
-  // console.log("AppState", AppState);
   const currentPosition = AppState.positions[AppState.positions.length - 1];
   const getCordinates = (e) => {
     const { top, left, width } = ref.current.getBoundingClientRect();
@@ -36,8 +35,8 @@ const Pieces = () => {
     let rankNumber = Number(rank);
     let fileNumber = Number(file);
     if (AppState.candidateMoves?.find((m) => m[0] === x && m[1] === y)) {
-      if ((piece === "wp " && rank === 7) || (piece === "bp " && rank === 0)) {
-        openPromotionBox({ rank, file, x, y });
+      if ((x === 7 && piece === "wp") || (x === 0 && piece === "bp")) {
+        openPromotionBox({ rank: rankNumber, file: fileNumber, x, y });
         return;
       }
       const newPositions = arbiter.performMoves({
