@@ -12,5 +12,5 @@ export const initGameState = {
   turn: "w",
   candidateMoves: [],
   status: Status.ongoing,
-  promotionSquar: null,
+  promotionSquare: null,
 };
