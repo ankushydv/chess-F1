@@ -36,6 +36,7 @@ export const reducer = (state, action) => {
       return {
         ...state,
         status: Status.ongoing,
+        promotionSquare: null,
       };
     }
     default:
