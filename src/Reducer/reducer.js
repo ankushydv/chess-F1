@@ -29,7 +29,13 @@ export const reducer = (state, action) => {
       return {
         ...state,
         status: Status.promotion,
-        promotionSquar: { ...action.payload },
+        promotionSquare: { ...action.payload },
+      };
+    }
+    case actionTypes.PROMOTION_CLOSE: {
+      return {
+        ...state,
+        status: Status.ongoing,
       };
     }
     default:
