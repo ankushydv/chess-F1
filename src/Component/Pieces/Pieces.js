@@ -1,14 +1,14 @@
 import Piece from "./Piece";
 import React, { useRef } from "react";
 import "./Pieces.css";
-import { copyPosition } from "../../helper";
 import { useAppContext } from "../../context";
 import { makeNewMove, clearCandidateMoves } from "../../Reducer/action/move";
+import arbiter from "../../arbiter/arbiter";
+import { openPromotion } from "../../Reducer/action/popup";
 
 const Pieces = () => {
   const ref = useRef();
   const { AppState, dispatch } = useAppContext();
-  // console.log("AppState", AppState);
   const currentPosition = AppState.positions[AppState.positions.length - 1];
   const getCordinates = (e) => {
     const { top, left, width } = ref.current.getBoundingClientRect();
@@ -18,20 +18,43 @@ const Pieces = () => {
     return { x, y };
   };
 
-  const onDrop = (e) => {
-    let newPositions = copyPosition(currentPosition);
+  const openPromotionBox = ({ rank, file, x, y }) => {
+    dispatch(
+      openPromotion({
+        rank,
+        file,
+        x,
+        y,
+      })
+    );
+  };
+
+  const move = (e) => {
     const { x, y } = getCordinates(e);
-    // console.log(x, y);
     const [piece, rank, file] = e.dataTransfer.getData("text").split(",");
+    let rankNumber = Number(rank);
+    let fileNumber = Number(file);
     if (AppState.candidateMoves?.find((m) => m[0] === x && m[1] === y)) {
-      let rankNumber = Number(rank);
-      let fileNumber = Number(file);
-      newPositions[rankNumber][fileNumber] = "";
-      newPositions[x][y] = piece;
-      // console.log(newPositions);
+      if ((x === 7 && piece === "wp") || (x === 0 && piece === "bp")) {
+        openPromotionBox({ rank: rankNumber, file: fileNumber, x, y });
+        return;
+      }
+      const newPositions = arbiter.performMoves({
+        positions: currentPosition,
+        piece,
+        rank: rankNumber,
+        file: fileNumber,
+        x,
+        y,
+      });
       dispatch(makeNewMove({ newPositions }));
     }
     dispatch(clearCandidateMoves());
+  };
+
+  const onDrop = (e) => {
+    e.preventDefault();
+    move(e);
   };
 
   const onDragOver = (e) => {

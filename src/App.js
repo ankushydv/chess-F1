@@ -15,7 +15,7 @@ function App() {
   // console.log("turn", AppState.turn);
   return (
     <AppContext.Provider value={ProviderState}>
-      <div className="App">
+      <div className={`App ${AppState.turn}`}>
         <Board />
       </div>
     </AppContext.Provider>
