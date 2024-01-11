@@ -233,7 +233,6 @@ export const getCastlingMoves = ({
   file,
 }) => {
   const moves = [];
-
   if (file !== 4 || rank % 7 !== 0 || castleDirection === "none") {
     return moves;
   }
@@ -276,4 +275,32 @@ export const getCastlingMoves = ({
   }
 
   return moves;
+};
+export const getCastlingDirections = ({
+  castleDirection,
+  piece,
+  file,
+  rank,
+}) => {
+  file = Number(file);
+  rank = Number(rank);
+  const direction = castleDirection[piece[0]];
+  if (piece.endsWith("k")) return "none";
+
+  if (file === 0 && rank === 0) {
+    if (direction === "both") return "right";
+    if (direction === "left") return "none";
+  }
+  if (file === 7 && rank === 0) {
+    if (direction === "both") return "left";
+    if (direction === "right") return "none";
+  }
+  if (file === 0 && rank === 7) {
+    if (direction === "both") return "right";
+    if (direction === "left") return "none";
+  }
+  if (file === 7 && rank === 7) {
+    if (direction === "both") return "left";
+    if (direction === "right") return "none";
+  }
 };
