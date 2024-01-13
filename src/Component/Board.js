@@ -9,16 +9,21 @@ import Popup from "./Popup/Popup";
 
 const Board = () => {
   const { AppState } = useAppContext();
+  const { turn } = AppState;
+  // console.log("turn", turn);
+  const enemy = turn === "w" ? "b" : "w";
+  // console.log(enemy);
 
   //Get the current piece move position move.
   const positions = AppState.positions[AppState.positions.length - 1];
   //Genrate the board classname for black and white.
   //It is also give a hint for move as per piece and give hint as cicle position for any enemy piece is available for attack.
+  // console.log("ps", positions);
   const getClassName = (i, j) => {
     let c = "tile";
     c += (i + j) % 2 === 0 ? " tile-light" : " tile-dark";
     if (AppState.candidateMoves?.find((m) => m[0] === i && m[1] === j)) {
-      if (positions[i][j]) c += " attacking";
+      if (positions[i][j].startsWith(enemy)) c += " attacking";
       else c += " highlighting";
     }
     return c;
