@@ -50,11 +50,16 @@ export const getKnightMoves = ({ position, rank, file }) => {
     [1, 2],
   ];
   // Iterate over possible knight moves
-  direaction.forEach((c) => {
-    const cell = position?.[rank + c[0]]?.[file + c[1]];
+  direaction.forEach((x) => {
+    const ne = position?.[rank + x[0]]?.[file + x[1]];
     // Add valid moves to the list
-    if (cell !== undefined && (cell.startsWith(enemy) || cell === "")) {
-      moves.push([rank + c[0], file + c[1]]);
+    if (ne !== undefined && (ne?.startsWith(enemy) || ne === "")) {
+      moves.push([rank + x[0], file + x[1]]);
+    }
+    if (ne?.startsWith(enemy === "b" ? "w" : "b")) {
+      return;
+    } else {
+      moves.push([rank + x[0], file + x[1]]);
     }
   });
   return moves;
@@ -223,4 +228,84 @@ export const getPawnCapture = ({
   }
 
   return moves;
+};
+
+export const getCastlingMoves = ({
+  position,
+  castleDirection,
+  piece,
+  rank,
+  file,
+}) => {
+  const moves = [];
+  if (file !== 4 || rank % 7 !== 0 || castleDirection === "none") {
+    return moves;
+  }
+  if (piece.startsWith("w")) {
+    if (
+      ["left", "both"].includes(castleDirection) &&
+      !position[0][3] &&
+      !position[0][2] &&
+      !position[0][1] &&
+      position[0][0] === "wr"
+    ) {
+      moves.push([0, 2]);
+    }
+    if (
+      ["right", "both"].includes(castleDirection) &&
+      !position[0][5] &&
+      !position[0][6] &&
+      position[0][7] === "wr"
+    ) {
+      moves.push([0, 6]);
+    }
+  } else {
+    if (
+      ["left", "both"].includes(castleDirection) &&
+      !position[7][3] &&
+      !position[7][2] &&
+      !position[7][1] &&
+      position[7][0] === "br"
+    ) {
+      moves.push([7, 2]);
+    }
+    if (
+      ["right", "both"].includes(castleDirection) &&
+      !position[7][5] &&
+      !position[7][6] &&
+      position[7][7] === "br"
+    ) {
+      moves.push([7, 6]);
+    }
+  }
+
+  return moves;
+};
+export const getCastlingDirections = ({
+  castleDirection,
+  piece,
+  file,
+  rank,
+}) => {
+  file = Number(file);
+  rank = Number(rank);
+  const direction = castleDirection[piece[0]];
+  if (piece.endsWith("k")) return "none";
+
+  if (file === 0 && rank === 0) {
+    if (direction === "both") return "right";
+    if (direction === "left") return "none";
+  }
+  if (file === 7 && rank === 0) {
+    if (direction === "both") return "left";
+    if (direction === "right") return "none";
+  }
+  if (file === 0 && rank === 7) {
+    if (direction === "both") return "right";
+    if (direction === "left") return "none";
+  }
+  if (file === 7 && rank === 7) {
+    if (direction === "both") return "left";
+    if (direction === "right") return "none";
+  }
 };

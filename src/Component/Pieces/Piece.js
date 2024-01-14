@@ -4,7 +4,7 @@ import { genrateCandidateMoves } from "../../Reducer/action/move";
 
 const Piece = ({ file, piece, rank }) => {
   const { AppState, dispatch } = useAppContext();
-  const { turn, positions } = AppState;
+  const { turn, positions, castleDirection } = AppState;
   //export as context for current position
   const currentPosition = positions[positions.length - 1];
 
@@ -18,6 +18,7 @@ const Piece = ({ file, piece, rank }) => {
       const candidateMoves = arbiter.getValidMoves({
         position: currentPosition,
         prevPosition: positions[positions.length - 2],
+        castleDirection: castleDirection[turn],
         piece,
         rank,
         file,
