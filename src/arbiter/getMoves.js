@@ -50,11 +50,16 @@ export const getKnightMoves = ({ position, rank, file }) => {
     [1, 2],
   ];
   // Iterate over possible knight moves
-  direaction.forEach((c) => {
-    const cell = position?.[rank + c[0]]?.[file + c[1]];
+  direaction.forEach((x) => {
+    const ne = position?.[rank + x[0]]?.[file + x[1]];
     // Add valid moves to the list
-    if (cell !== undefined && (cell.startsWith(enemy) || cell === "")) {
-      moves.push([rank + c[0], file + c[1]]);
+    if (ne !== undefined && (ne?.startsWith(enemy) || ne === "")) {
+      moves.push([rank + x[0], file + x[1]]);
+    }
+    if (ne?.startsWith(enemy === "b" ? "w" : "b")) {
+      return;
+    } else {
+      moves.push([rank + x[0], file + x[1]]);
     }
   });
   return moves;
