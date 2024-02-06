@@ -25,7 +25,7 @@ export const movePiece = ({ positions, piece, rank, file, x, y }) => {
     }
   }
 
-  newPositions[rank][file] = " ";
+  newPositions[rank][file] = "";
   newPositions[x][y] = piece;
   return newPositions;
 };
