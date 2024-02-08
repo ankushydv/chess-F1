@@ -9,7 +9,7 @@ import { updateCastling } from "../../Reducer/action/game";
 import { getCastlingDirections } from "../../arbiter/getMoves";
 
 const Pieces = () => {
-  const ref = useReef();
+  const ref = useRef();
   const { AppState, dispatch } = useAppContext();
   const currentPosition = AppState.positions[AppState.positions.length - 1];
   const getCordinates = (e) => {

@@ -38,7 +38,6 @@ const Board = () => {
     .map((x, i) => getCharacter(i));
 
 
-    console.log("hsb")
 
   return (
     <>
