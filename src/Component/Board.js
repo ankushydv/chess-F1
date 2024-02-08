@@ -37,6 +37,9 @@ const Board = () => {
     .fill()
     .map((x, i) => getCharacter(i));
 
+
+    console.log("hsb")
+
   return (
     <>
       <div className="board">
