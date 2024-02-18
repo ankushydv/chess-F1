@@ -64,24 +64,22 @@ const arbiter = {
         }),
       ];
     }
-    // moves.forEach(([x, y]) => {
-    //   const positionAfterMove = this.performMoves({
-    //     position,
-    //     piece,
-    //     rank,
-    //     file,
-    //     x,
-    //     y,
-    //   });
-    //   if (
-    //    /* */ !this.isPlayerInCheck({ positionAfterMove, position, player: piece[0] })
-    //   ) {
-    //     notInCheckMoves.push([x, y]);
-    //   }
-    // });
-    // return notInCheckMoves;
-    return moves;
-
+    moves.forEach(([x, y]) => {
+      const positionAfterMove = this.performMoves({
+        position,
+        piece,
+        rank,
+        file,
+        x,
+        y,
+      });
+      if (
+        !this.isPlayerInCheck({ positionAfterMove, position, player: piece[0] })
+      ) {
+        notInCheckMoves.push([x, y]);
+      }
+    });
+    return notInCheckMoves;
   },
   performMoves: function ({ positions, piece, rank, file, x, y }) {
     if (piece.endsWith("p")) {
@@ -90,30 +88,30 @@ const arbiter = {
       return movePiece({ positions, piece, rank, file, x, y });
     }
   },
-  // isPlayerInCheck: function ({positionAfterMove, position, player}){
-  //   const enemy = player.startsWith('w') ? 'b' : 'w';
-  //   const kingPos = getkingPosition(positionAfterMove, player);
-  //   const enemyPiece = getPiece (positionAfterMove, enemy)
+  isPlayerInCheck: function ({positionAfterMove, position, player}){
+    const enemy = player.startsWith('w') ? 'b' : 'w';
+    const kingPos = getkingPosition(positionAfterMove, player);
+    const enemyPiece = getPiece (positionAfterMove, enemy)
 
-  //   const enemyMoves = enemyPiece.reduce((acc, p) => acc = [
-  //     ...acc,
-  //     ...(p.piece.endWith('p'))
-  //   ? getPawnCapture({
-  //     position:positionAfterMove,
-  //     prevPosition:position,
-  //     ...p
+    const enemyMoves = enemyPiece.reduce((acc, p) => acc = [
+      ...acc,
+      ...(p.piece.endWith('p'))
+    ? getPawnCapture({
+      position:positionAfterMove,
+      prevPosition:position,
+      ...p
 
-  //   })
-  //   : this.getRegularMoves({
-  //     position: positionAfterMove,
-  //     ...p
-  //   })
-  //   ],[])
-  //   if(enemyMoves.some(([x,y])=> kingPos[0] === x && kingPos[1] === y)){
-  //     return true
-  //   }
-  //   return false
-  // },
+    })
+    : this.getRegularMoves({
+      position: positionAfterMove,
+      ...p
+    })
+    ],[])
+    if(enemyMoves.some(([x,y])=> kingPos[0] === x && kingPos[1] === y)){
+      return true
+    }
+    return false
+  },
 };
 
 export default arbiter;
