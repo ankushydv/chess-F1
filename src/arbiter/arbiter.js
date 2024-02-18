@@ -60,6 +60,11 @@ const arbiter = {
           file,
         }),
       ];
+      console.log("position:" , position )
+      moves.forEach(([x,y]) => {
+        const positionAfterMove = this.performMoves({ positions:position, piece , rank, file, x, y});
+        console.log(positionAfterMove)
+      })
     }
     return moves;
   },
