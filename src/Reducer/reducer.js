@@ -25,6 +25,12 @@ export const reducer = (state, action) => {
         candidateMoves: [],
       };
     }
+    case actionTypes.STALEMATE : {
+      return {
+          ...state,
+          status : Status.stalemate
+      }
+  }
     case actionTypes.PROMOTION_OPEN: {
       return {
         ...state,
