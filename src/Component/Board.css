@@ -36,6 +36,18 @@
     top: 25%;
 }
 
+.checking::after{
+    display: block;
+    position: absolute;
+    content: '';
+    width : calc(var(--tile-size));
+    height : calc(var(--tile-size));
+    background: var(--check);
+    border-radius: 20%;
+    left: 0;
+    top: 0;
+}
+
 .attacking::after{
     display: block;
     position: absolute;

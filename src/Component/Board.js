@@ -6,6 +6,8 @@ import Files from "./bits/Files";
 import Pieces from "./Pieces/Pieces";
 import { useAppContext } from "../context";
 import Popup from "./Popup/Popup";
+import arbiter from "../arbiter/arbiter";
+import { getKingPosition } from "../arbiter/getMoves";
 
 const Board = () => {
   const { AppState } = useAppContext();
@@ -16,6 +18,21 @@ const Board = () => {
 
   //Get the current piece move position move.
   const positions = AppState.positions[AppState.positions.length - 1];
+
+  /* Get the checked king position */
+  const isChecked =(() =>{
+    const isInChecked = arbiter.isPlayerInCheck({
+      positionAfterMove: positions,
+      player: turn
+    })
+    if(isInChecked){
+      return getKingPosition(positions , turn)
+    }else{
+      return null
+    }
+  })()
+
+  console.log(isChecked,"checked");
   //Genrate the board classname for black and white.
   //It is also give a hint for move as per piece and give hint as cicle position for any enemy piece is available for attack.
   // console.log("ps", positions);
@@ -25,6 +42,9 @@ const Board = () => {
     if (AppState.candidateMoves?.find((m) => m[0] === i && m[1] === j)) {
       if (positions[i][j].startsWith(enemy)) c += " attacking";
       else c += " highlighting";
+    }
+    if(isChecked && isChecked[0] === i && isChecked[1] === j){
+      c+=" checking"
     }
     return c;
   };
