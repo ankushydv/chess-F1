@@ -59,10 +59,13 @@ export const getKnightMoves = ({ position, rank, file }) => {
     }
     if (ne?.startsWith(enemy === "b" ? "w" : "b")) {
       return;
-    } else {
+    } 
+    //This part take me days to add extra move knignt move filling the object and where block not present {{Unfocus lazy beep}}}}  
+    /*else {
       moves.push([rank + x[0], file + x[1]]);
-    }
+    } */
   });
+  console.log('Knight mOve', moves)
   return moves;
 };
 // Function to get valid moves for bishops on the chessboard
