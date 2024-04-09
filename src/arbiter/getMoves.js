@@ -59,9 +59,11 @@ export const getKnightMoves = ({ position, rank, file }) => {
     }
     if (ne?.startsWith(enemy === "b" ? "w" : "b")) {
       return;
-    } else {
-      moves.push([rank + x[0], file + x[1]]);
-    }
+    } 
+    //This part {{beeop } for daays 
+    // else {
+    //   moves.push([rank + x[0], file + x[1]]);
+    // }
   });
   return moves;
 };
