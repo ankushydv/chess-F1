@@ -47,6 +47,12 @@ export const reducer = (state, action) => {
         castleDirection,
       };
     }
+    case actionTypes.SET_INSUFFICIENT_MATERIAL:{
+      return{
+        ...state,
+        status: Status.insufficient
+      }
+    }
     default:
       return state;
   }

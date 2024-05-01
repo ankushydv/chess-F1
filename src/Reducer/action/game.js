@@ -6,3 +6,9 @@ export const updateCastling = (direaction) => {
     payload: direaction,
   };
 };
+
+export const  setInsufficientMaterial = () =>{
+  return{
+    type: actionTypes.SET_INSUFFICIENT_MATERIAL
+  }
+}

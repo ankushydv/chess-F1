@@ -5,7 +5,7 @@ import { useAppContext } from "../../context";
 import { makeNewMove, clearCandidateMoves } from "../../Reducer/action/move";
 import arbiter from "../../arbiter/arbiter";
 import { openPromotion } from "../../Reducer/action/popup";
-import { updateCastling } from "../../Reducer/action/game";
+import { updateCastling , setInsufficientMaterial} from "../../Reducer/action/game";
 import { getCastlingDirections } from "../../arbiter/getMoves";
 
 const Pieces = () => {
@@ -32,7 +32,7 @@ const Pieces = () => {
   };
 
   const updateCastlingState = ({ piece, rank, file }) => {
-    console.log(AppState.castleDirection);
+    // console.log(AppState.castleDirection);
     const direction = getCastlingDirections({
       castleDirection: AppState.castleDirection,
       piece,
@@ -64,6 +64,9 @@ const Pieces = () => {
         y,
       });
       dispatch(makeNewMove({ newPositions }));
+      if(arbiter.insufficientMaterial(newPositions)){
+        dispatch(setInsufficientMaterial(true))
+      }
     }
     dispatch(clearCandidateMoves());
   };

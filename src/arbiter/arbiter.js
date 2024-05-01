@@ -10,6 +10,8 @@ import {
   getPieces,
   getKingPosition,
 } from "./getMoves";
+import {areSameColorTiles,
+  findPieceCoords} from "../helper"
 import { movePawn, movePiece } from "./move";
 
 const arbiter = {
@@ -68,7 +70,7 @@ const arbiter = {
     moves.forEach(([x,y]) => {
 
       const positionAfterMove = this.performMoves({ positions:position, piece , rank, file, x, y});
-      console.log("positionAfterMove" , positionAfterMove)
+      // console.log("positionAfterMove" , positionAfterMove)
       if(!this.isPlayerInCheck({positionAfterMove,position, player:piece[0]})){
           notInCheckMoves.push( [x,y] );
       }
@@ -98,7 +100,7 @@ const arbiter = {
     );
 
     if (enemyMoves.some(([x, y]) => kingPos[0] === x && kingPos[1] === y)){
-      console.log("is come")
+      // console.log("is come")
       return true;
     }
     else return false;
@@ -110,6 +112,37 @@ const arbiter = {
     } else {
       return movePiece({ positions, piece, rank, file, x, y });
     }
+  },
+  insufficientMaterial: function (position) {
+    const pieces = position.reduce(
+      (acc, rank) => (acc = [...acc, ...rank.filter((spot) => spot)]),
+      []
+    );
+
+    // King vs. king
+    if (pieces.length === 2) return true;
+
+    // King and bishop vs. king
+    // King and knight vs. king
+    if (
+      pieces.length === 3 &&
+      pieces.some((p) => p.endsWith("b") || p.endsWith("n"))
+    )
+      return true;
+
+    // King and bishop vs. king and bishop of the same color as the opponent's bishop
+    if (
+      pieces.length === 4 &&
+      pieces.every((p) => p.endsWith("b") || p.endsWith("k")) &&
+      new Set(pieces).size === 4 &&
+      areSameColorTiles(
+        findPieceCoords(position, "wb")[0],
+        findPieceCoords(position, "bb")[0]
+      )
+    )
+      return true;
+
+    return false;
   },
 };
 
