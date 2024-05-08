@@ -32,7 +32,6 @@ const Pieces = () => {
   };
 
   const updateCastlingState = ({ piece, rank, file }) => {
-    console.log(AppState.castleDirection);
     const direction = getCastlingDirections({
       castleDirection: AppState.castleDirection,
       piece,

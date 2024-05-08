@@ -63,19 +63,27 @@ const arbiter = {
           file,
         }),
       ];
-     
     }
-    moves.forEach(([x,y]) => {
-
-      const positionAfterMove = this.performMoves({ positions:position, piece , rank, file, x, y});
-      console.log("positionAfterMove" , positionAfterMove)
-      if(!this.isPlayerInCheck({positionAfterMove,position, player:piece[0]})){
-          notInCheckMoves.push( [x,y] );
+    moves.forEach(([x, y]) => {
+      const positionAfterMove = this.performMoves({
+        positions: position,
+        piece,
+        rank,
+        file,
+        x,
+        y,
+      });
+      // console.log("positionAfterMove" , positionAfterMove)
+      if (
+        !this.isPlayerInCheck({ positionAfterMove, position, player: piece[0] })
+      ) {
+        notInCheckMoves.push([x, y]);
       }
-    })
+    });
     return notInCheckMoves;
   },
-  isPlayerInCheck: function ({positionAfterMove, position , player}){
+  isPlayerInCheck: function ({ positionAfterMove, position, player }) {
+    // console.error(positionAfterMove , player)
     const enemy = player.startsWith("w") ? "b" : "w";
     let kingPos = getKingPosition(positionAfterMove, player);
     const enemyPieces = getPieces(positionAfterMove, enemy);
@@ -97,12 +105,10 @@ const arbiter = {
       []
     );
 
-    if (enemyMoves.some(([x, y]) => kingPos[0] === x && kingPos[1] === y)){
-      console.log("is come")
+    if (enemyMoves.some(([x, y]) => kingPos[0] === x && kingPos[1] === y)) {
+      console.log("is come");
       return true;
-    }
-    else return false;
-
+    } else return false;
   },
   performMoves: function ({ positions, piece, rank, file, x, y }) {
     if (piece.endsWith("p")) {
@@ -110,6 +116,32 @@ const arbiter = {
     } else {
       return movePiece({ positions, piece, rank, file, x, y });
     }
+  },
+  isStalement: function (position, player, castleDirection) {
+    // console.log(position, player, castleDirection);
+    console.error("cum");
+    const isInCheck = this.isPlayerInCheck({
+      positionAfterMove: position,
+      player,
+    });
+    console.log(isInCheck);
+    if (isInCheck) return false;
+    const pieces = getPieces(position, player);
+    console.log(pieces);
+    const moves = pieces.reduce(
+      (acc, p) =>
+        (acc = [
+          ...acc,
+          ...this.getValidMoves({
+            position,
+            castleDirection,
+            ...p,
+          }),
+        ]),
+      []
+    );
+    console.log("moves", moves);
+    return !isInCheck && moves.length === 0;
   },
 };
 
