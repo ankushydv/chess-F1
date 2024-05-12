@@ -141,13 +141,13 @@ const arbiter = {
   },
 
   isCheckMate: function (position, player, castleDirection) {
-    console.log("win and remove fog level up")
+    console.log("win and remove fog level up");
     const isInCheck = this.isPlayerInCheck({
       positionAfterMove: position,
       player,
     });
-    console.log(isInCheck);
-    if (isInCheck) return false;
+    console.log("isInCheck", isInCheck);
+    // if (!isInCheck) return false;
     const pieces = getPieces(position, player);
     console.log(pieces);
     const moves = pieces.reduce(
@@ -162,10 +162,12 @@ const arbiter = {
         ]),
       []
     );
-    console.log("moves", moves);
-    return isInCheck && moves.length === 0;
+    console.log("moves checkmate", moves);
+    if (isInCheck && moves.length === 0) {
+      console.log("true checkmate");
+      return true;
+    }
   },
-
 };
 
 export default arbiter;

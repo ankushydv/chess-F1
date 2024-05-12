@@ -65,7 +65,7 @@ export const getKnightMoves = ({ position, rank, file }) => {
       moves.push([rank + x[0], file + x[1]]);
     } */
   });
-  console.log('Knight mOve', moves)
+  // console.log('Knight mOve', moves)
   return moves;
 };
 // Function to get valid moves for bishops on the chessboard
