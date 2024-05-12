@@ -5,6 +5,7 @@ export const Status = {
   promotion: "Promoting",
   white: "White wins",
   black: "Black wins",
+  stalemate:"Game is draw due to not enough move",
 };
 
 export const initGameState = {
