@@ -6,6 +6,7 @@ const actionTypes = {
   PROMOTION_CLOSE: "PROMOTION_CLOSE",
   CAN_CASTLE: "CAN_CASTLE",
   STALEMATE : "STALEMATE",
+  WIN : "WIN"
 };
 
 export default actionTypes;

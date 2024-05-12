@@ -12,3 +12,11 @@ export const detectStalemate = () => {
       type: actionTypes.STALEMATE,
   }
 }
+
+export const detectCheckMate = winner => {
+  console.log("winner" ,winner)
+  return {
+      type: actionTypes.WIN,
+      payload: winner
+  }
+}

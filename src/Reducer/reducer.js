@@ -30,7 +30,13 @@ export const reducer = (state, action) => {
           ...state,
           status : Status.stalemate
       }
-  }
+    }
+    case actionTypes.WIN : {
+      return {
+          ...state,
+          status : action.payload === "w" ? Status.white : Status.black
+      }
+    }
     case actionTypes.PROMOTION_OPEN: {
       return {
         ...state,

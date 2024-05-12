@@ -83,7 +83,6 @@ const arbiter = {
     return notInCheckMoves;
   },
   isPlayerInCheck: function ({ positionAfterMove, position, player }) {
-    // console.error(positionAfterMove , player)
     const enemy = player.startsWith("w") ? "b" : "w";
     let kingPos = getKingPosition(positionAfterMove, player);
     const enemyPieces = getPieces(positionAfterMove, enemy);
@@ -106,7 +105,6 @@ const arbiter = {
     );
 
     if (enemyMoves.some(([x, y]) => kingPos[0] === x && kingPos[1] === y)) {
-      console.log("is come");
       return true;
     } else return false;
   },
@@ -118,8 +116,6 @@ const arbiter = {
     }
   },
   isStalement: function (position, player, castleDirection) {
-    // console.log(position, player, castleDirection);
-    console.error("cum");
     const isInCheck = this.isPlayerInCheck({
       positionAfterMove: position,
       player,
@@ -142,6 +138,35 @@ const arbiter = {
     );
     console.log("moves", moves);
     return !isInCheck && moves.length === 0;
+  },
+
+  isCheckMate: function (position, player, castleDirection) {
+    console.log("win and remove fog level up");
+    const isInCheck = this.isPlayerInCheck({
+      positionAfterMove: position,
+      player,
+    });
+    console.log("isInCheck", isInCheck);
+    // if (!isInCheck) return false;
+    const pieces = getPieces(position, player);
+    console.log(pieces);
+    const moves = pieces.reduce(
+      (acc, p) =>
+        (acc = [
+          ...acc,
+          ...this.getValidMoves({
+            position,
+            castleDirection,
+            ...p,
+          }),
+        ]),
+      []
+    );
+    console.log("moves checkmate", moves);
+    if (isInCheck && moves.length === 0) {
+      console.log("true checkmate");
+      return true;
+    }
   },
 };
 
