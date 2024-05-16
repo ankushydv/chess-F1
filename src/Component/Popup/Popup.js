@@ -14,9 +14,7 @@ const Popup = () => {
     dispatch(closePopup());
   };
   return (
-    <div className="popup">
       <Promotion onClosePopUp={onClosePopUp} />
-    </div>
   );
 };
 
